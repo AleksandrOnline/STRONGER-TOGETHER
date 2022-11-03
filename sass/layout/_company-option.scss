@@ -27,17 +27,28 @@
     height: 70px;
 }
 
-@media screen and(max-width:1199px) {
-    .section-mobile-hidden{
-        position: absolute;
-    white-space: nowrap;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    border: 0;
-    padding: 0;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    margin: -1px;
-    }
+
+.target {
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 17.525px;
+line-height: 26px;
+
+color: rgba(0, 0, 0, 0.5);
 }
+
+// @media screen and(max-width:1199px) {
+//     .section-mobile-hidden{
+//         position: absolute;
+//     white-space: nowrap;
+//     width: 1px;
+//     height: 1px;
+//     overflow: hidden;
+//     border: 0;
+//     padding: 0;
+//     clip: rect(0 0 0 0);
+//     clip-path: inset(50%);
+//     margin: -1px;
+//     }
+// }
