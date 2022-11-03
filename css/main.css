@@ -794,6 +794,11 @@ footer {
   padding-bottom: 30px;
 }
 
+.foto-teams {
+  width: 270px;
+  object-fit: contain;
+}
+
 .name {
   font-style: normal;
   font-weight: 500;
