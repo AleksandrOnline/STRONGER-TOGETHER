@@ -326,7 +326,7 @@ footer {
   }
 }
 .studio-header {
-  color: #000000;
+  color: #fed00c;
 }
 
 .logo {
@@ -364,7 +364,7 @@ footer {
 }
 
 .studio-footer {
-  color: #FFFFFF;
+  color: #fed00c;
 }
 
 .find__addres {
@@ -416,10 +416,6 @@ footer {
   line-height: 16px;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: #FFFFFF;
-}
-
-.studio-footer {
   color: #FFFFFF;
 }
 
