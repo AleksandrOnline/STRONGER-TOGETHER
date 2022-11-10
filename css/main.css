@@ -599,6 +599,21 @@ footer {
     width: 100%;
   }
 }
+.politicsAndOfer {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.politicsAndOfer__politics {
+  color: #FFFFFF;
+}
+
+.politicsAndOfer__ofer {
+  color: #FFFFFF;
+}
+
 .list {
   list-style: none;
 }
@@ -693,15 +708,20 @@ footer {
 }
 .section-hidden-inventori {
   padding-top: 94px;
+  padding-bottom: 94px;
 }
 
 .company-characteristics {
   display: flex;
+  justify-content: center;
   gap: 30px;
 }
 
 .features {
   width: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .features__heading {

@@ -2,17 +2,20 @@
 
 .section-hidden-inventori {
     padding-top: 94px;
-    
+    padding-bottom: 94px;
 }
 
 .company-characteristics {
     display: flex;
+    justify-content: center;
     gap: 30px
 }
 
 .features {
     width: 270px;
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
