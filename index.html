@@ -15,7 +15,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/modern-normalize@1.1.0/modern-normalize.min.css"
     />
-    <link rel="stylesheet" href="./css/main.min.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <script src="./js/i18nextify.min.js"></script>
+    <script src="./js/language-change.js"></script>
   </head>
 
   <body>
@@ -29,100 +31,326 @@
           <!-- Navigation -->
           <ul class="list menu">
             <li class="menu__item">
-              <a class="nav index-after" href="./index.html">Головна</a>
+              <a class="nav index-after" href="./index.html" trnaslate-key="Main Page">Main Page</a>
             </li>
             <li class="menu__item">
-              <a class="nav" href="./portfolio.html">Звіт</a>
+              <a class="nav" href="./portfolio.html" translate-key="Report">Report</a>
             </li>
           </ul>
         </nav>
 
         <ul class="list header-contacts">
           <li class="header-contacts__container">
-            <a
-              class="container__contacts-header email"
-              href="mailto:info@devstudio.com"
-              ><svg class="container__icone-mail">
-                <use href="./images/svgimages/sprite.svg#mail"></use></svg
-              >cf.stronger.together@gmail.com</a
-            >
+            <a class="container__contacts-header email" href="mailto:info@devstudio.com" translated>
+              <svg class="container__icone-mail">
+                <use href="./images/svgimages/sprite.svg#mail"></use>
+              </svg>
+              cf.stronger.together@gmail.com
+            </a>
           </li>
           <li class="header-contacts__container">
-                <a class="container__contacts-header" href="tel:+380950442699"><svg class="container__icone-phone">
-                    <use href="./images/svgimages/sprite.svg#phone"></use>
-                </svg>+38 095 044 126 99</a>
-            </li>
+            <a class="container__contacts-header" href="tel:+380950442699" translated>
+              <svg class="container__icone-phone">
+                <use href="./images/svgimages/sprite.svg#phone"></use>
+              </svg>
+              +38 095 044 126 99
+            </a>
+          </li>
         </ul>
+
+        <div id="language-button-container">
+          <button id="language-button">
+            <svg id="language-button__flag" viewBox="0 0 15 10">
+              <use href="./images/svgimages/flags.svg#en" />
+            </svg>
+          </button>
+        </div>
       </div>
     </header>
 
     <!-- Main block -->
     <main>
       <section class="title">
-        <div class="container">
+        <div class="title-container container">
           <h1 class="title-name">
-            Благодійний фонд<br />
-            “Сила у Єднанні”
+            <span>Charitable Foundation</span>
+            <br>
+            “<span>Stronger Together</span>”
           </h1>
-          <!-- <div class="LiqPay"> -->
-            <a class="LiqPay" href="https://www.liqpay.ua/uk/checkout/card/i86068468141">Допомогти</a>
-          <!-- </div> -->
-          <!-- <button class="LiqPay" type="button" data-modal-open> -->
-            <!-- Допомогти -->
-          <!-- </button> -->
+
+          <div class="support-container">
+            <button class="support-button" onclick="this.parentElement.classList.toggle('open');">
+              Support
+            </button>
+            <div class="support-dropdown">
+              <a href="https://www.liqpay.ua/en/checkout/card/i86068468141" class="liqpay" translated>
+                <img src="images/svgimages/liqpay.svg">
+                LiqPay 
+              </a>
+              <button onclick="document.querySelector('#iban-popup').classList.toggle('open')" translated>
+                <svg>
+                  <use href="./images/svgimages/sprite.svg#bank"></use>
+                </svg>
+                IBAN
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- IBAN -->
+
+      <section class="popup__background" id="iban-popup">
+        <script>
+          const selectIBANCurrency = (currency) => {
+            document.querySelectorAll(".popup__header button")
+              .forEach(e => e.classList.remove("active"));
+            document.querySelectorAll(".popup__content")
+              .forEach(e => e.classList.remove("active"));
+            console.log(document.querySelectorAll(".popup__button_" + currency));
+            document.querySelectorAll("#popup__button_" + currency)
+              .forEach(e => e.classList.add("active"));
+            document.querySelectorAll("#popup__content_" + currency)
+              .forEach(e => e.classList.add("active"));
+          }
+
+          const onCopyClick = (button) => {
+            const parent = button.parentElement;
+            if (parent.nodeName === 'TD') {
+              const row = parent.parentElement;
+              const elements = row.querySelectorAll("td");
+              const element = elements[elements.length - 2];
+              const text = element.innerText.trim();
+              navigator.clipboard.writeText(text);
+
+              const info = document.createElement("div");
+              info.classList.add("popup__copy-element__info");
+              info.innerText = window.i18nextify.i18next.t('Copied!');
+              button.appendChild(info);
+              setTimeout(() => {
+                button.removeChild(button.querySelector(".popup__copy-element__info"));
+              }, 2000);
+            }
+          }
+
+          window.addEventListener("load", () => {
+            let copyElements = document.querySelectorAll(".popup__copy-element");
+            copyElements.forEach(e => {
+              e.innerHTML = '<svg><use href="./images/svgimages/sprite.svg#copy"></use></svg>';
+              e.addEventListener("click", () => onCopyClick(e));
+            });
+          });
+        </script>
+
+        <div class="popup container">
+          <div class="popup__header">
+            <button class="active" id="popup__button_usd" onclick="selectIBANCurrency('usd')">
+              <span class="symbol"> $ </span>
+              <span class="text"> USD </span>
+            </button>
+            <button id="popup__button_eur" onclick="selectIBANCurrency('eur')">
+              <span class="symbol"> € </span>
+              <span class="text"> EUR </span>
+            </button>
+            <button id="popup__button_uah" onclick="selectIBANCurrency('uah')">
+              <span class="symbol"> ₴ </span>
+              <span class="text"> UAH <span>
+            </button>
+            <button onclick="document.querySelector('#iban-popup').classList.toggle('open')" class="close-button">
+              <svg>
+                <use href="./images/svgimages/sprite.svg#close">
+              </svg>
+            </button>
+          </div>
+
+          <div class="popup__content active" id="popup__content_usd">
+            <span class="popup__title"> Account Details ($ US Dollars) </span>
+            <table>
+              <tr>
+                <td>
+                  Recipient name:
+                </td>
+                <td>
+                  БО БФ СИЛА У ЄДНАННІ
+                </td>
+                <td><button class="popup__copy-element"></button></td>
+              </tr>
+              <tr>
+                <td>
+                  IBAN Code:
+                </td>
+                <td>
+                  UA213052990000026002036227609
+                </td>
+                <td><button class="popup__copy-element"></button></td>
+              </tr>
+              <tr>
+                <td>
+                  Bank name:
+                </td>
+                <td>
+                  JSC CB "PRIVATBANK", 1D HRUSHEVSKOHO STR., KYIV, 01001, UKRAINE
+                </td>
+                <td><button class="popup__copy-element"></button></td>
+              </tr>
+              <tr>
+                <td>
+                  SWIFT Code:
+                </td>
+                <td>
+                  PBANUA2X
+                </td>
+                <td><button class="popup__copy-element"></button></td>
+              </tr>
+              <tr>
+                <td>
+                  Company address:
+                </td>
+                <td>
+                  01001, УКРАЇНА, М. КИЇВ, ВУЛ. ІОАННА ПАВЛА ДРУГОГО, Б. 11, КВ. 5.
+                </td>
+                <td><button class="popup__copy-element"></button></td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="popup__content" id="popup__content_eur">
+            <span class="popup__title"> Account Details (€ Euro) </span>
+            <table>
+              <tr>
+                <td>
+                  Recipient name:
+                </td>
+                <td>
+                  БО БФ СИЛА У ЄДНАННІ
+                </td>
+                <td><button class="popup__copy-element"></button></td>
+              </tr>
+              <tr>
+                <td>
+                  IBAN Code:
+                </td>
+                <td>
+                  UA793052990000026000046234026
+                </td>
+                <td><button class="popup__copy-element"></button></td>
+              </tr>
+              <tr>
+                <td>
+                  Bank name:
+                </td>
+                <td>
+                  JSC CB "PRIVATBANK", 1D HRUSHEVSKOHO STR., KYIV, 01001, UKRAINE
+                </td>
+                <td><button class="popup__copy-element"></button></td>
+              </tr>
+              <tr>
+                <td>
+                  SWIFT Code:
+                </td>
+                <td>
+                  PBANUA2X
+                </td>
+                <td><button class="popup__copy-element"></button></td>
+              </tr>
+              <tr>
+                <td>
+                  Company address:
+                </td>
+                <td>
+                  01001, УКРАЇНА, М. КИЇВ, ВУЛ. ІОАННА ПАВЛА ДРУГОГО, Б. 11, КВ. 5.
+                </td>
+                <td><button class="popup__copy-element"></button></td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="popup__content" id="popup__content_uah">
+            <span class="popup__title"> Account Details (₴ Ukrainian hryvnya) </span>
+            <table>
+              <tr>
+                <td>
+                  Recipient name:
+                </td>
+                <td>
+                  БО БФ СИЛА У ЄДНАННІ
+                </td>
+                <td><button class="popup__copy-element"></button></td>
+              </tr>
+              <tr>
+                <td>
+                  IBAN Code:
+                </td>
+                <td>
+                  UA623052990000026004046224593
+                </td>
+                <td><button class="popup__copy-element"></button></td>
+              </tr>
+              <tr>
+                <td>
+                  Recipient code:
+                </td>
+                <td>
+                  44875881
+                </td>
+                <td><button class="popup__copy-element"></button></td>
+              </tr>
+              <tr>
+                <td>
+                  Bank name:
+                </td>
+                <td>
+                  АТ КБ «ПриватБанк»
+                </td>
+                <td><button class="popup__copy-element"></button></td>
+              </tr>
+            </table>
+          </div>
         </div>
       </section>
 
       <section class="section section-mobile-hidden">
         <div class="container">
-          <h2 class="section__banner">Наша мета</h2>
-          <p class="target">
-            Війна не завжди дозволяє навіть самій ефективній державі вжити
-            вичерпних та своєчасних заходів до забезпечення військових
-            підрозділів усім необхідним. Бойова обстановка подекуди ставить
-            достатньо неочікувані завдання, що вимагають матеріального
-            забезпечення, яке важко передбачити планом постачання військ на
-            рівні штабів усіх рівнів. Не є секретом, що в бойовій обстановці
-            обладнання швидко псується, знищується або втрачається. Отже,
-            держава, яка б вона не була розумна та раціональна, не може
-            передбачити та своєчасно забезпечити раптово виникаючи потреби
-            військових, які воюють на передньому краю. Великі благодійні фонди,
-            як правило, спрямовують свої зусилля на, так би мовити, стратегичні
-            потреби, на кшталт збору коштів та закупівлі ударних безпілотників
-            та розвідувальних супутників, що є дуже важливим для війська.
-            Водночас, невеликі благодійні фонди, які мають зв’язок з окремими
-            підрозділами, володіють інформацією про щоденні потреби кожного
-            солдата та здатні діяти в оперативній площині, забезпечуючи
-            достатньо швидку акумуляцію коштів та забезпечення за їх рахунок
-            щоденних потреб військових. Це такі потреби як ремонт та
-            обслуговування техніки, не лише штатної, але і наданої волонтерами,
-            забезпечення засобами зв’язку, оптики, обігріву тощо. На цей час
-            свідомими та небайдужими громадянами в Україні створено безліч таких
-            невеликих фондів. Всі вони потрібні і всі роблять свою справу – свій
-            маленький вклад у перемогу людяності над звіриною люттю агресора.
-            Такий зараз час. Час захистити всіма можливими засобами незалежність
-            України та Європи, стабільність у всьому світі. Саме з цієї причини
-            ми вирішили створити Благодійний фонд «Сила у єднанні», зусилля
-            якого спрямувати на підтримку 5-го окремого штурмового полку та
-            204-го окремого батальйону територіальної оборони, які прямо зараз
-            ведуть тяжкі бої з російським агресором на сході України в Донецькій
-            області. Зазначені підрозділи несуть важкі втрати на цій жорстокій
-            війні. Нашою ціллю є допомогти їм залишитися живими та перемогти. Ще
-            до створення фонду, нами та нашими друзями за власні кошти придбано
-            та передано військовим 50 бронежилетів, понад 5000 консервів,
-            медичний автомобіль, матеріали для обладнання позицій. Зараз
-            вирішується питання про придбання за власний кошт генераторів та 3G
-            модему Starlink. Водночас, залучення коштів ширшого кола небайдужих
-            не лише в Україні, але і за її межами, виведе нашу допомогу на новий
-            рівень та внесе значно вагоміший внесок у надважливішу для людства
-            справу Збройних Сил України та всього українського народу!
+          <h2 class="section__banner">Our Goal</h2>
+          <p class="target" translate-key="text-goal">
+            War may not allow even the most developped countries to deliver timely measures to the military supply requirements. 
+
+            Combat situation frequently puts unexpected tasks and requires supplies that are hard to predict at any level of military commandment.
+
+            It is not a secret that in combat situations equipment deteriorates fast, gets destroyed or lost. This leads to the fact that country cannot always support all the troop requirements at the front lines.
+
+            Large charitable foundations as a rule focus on strategic needs, such as unmanned aerial vehicles and recoinasanse satellites.
+
+            On the other hand, small charitable foundations that are in direct contact with particular divisions possess information about the needs of soldiers themselves at the front lines. They are capable of promptly accumulating foundations and utilizing them for everyday needs of soldiers. 
+
+
+            Such needs include the repair and maintanance of machinery, provision of communication equipment, optics, heating means.
+
+            At the present moment there is a number of such small foundations created by conscious and caring citizens of Ukraine. 
+
+            They are all needed and do their job well. They all contribute to the victory of humanity over the beastly rage of the aggressor.  
+
+            The realities of our time are that we must protect the independency of Ukraine by all possible means. And with it, we protect the staiblity in Europe and the whole world.
+
+            Due to this exact reason we have decided to create the charitable foundation "Strength in Unity" that puts effort to support the 5th separate regiment and 204th separate batalion of territorial defence, that are fighting hard battles with the Russian aggressor in the eastern Ukraine in Donetsk region right now.
+
+            The mentioned divisions are suffering heavy losses in this brutal war. Our goal is to help them win and stay alive.
+
+            Even before this foundation was created, together with our friends at our own expense we purchased and handed over 50 bulletproof vests, more than 5000 canned foods, a medical vehicle and military fortification materials.  
+
+            Right now, the purchase of electrical generators and Starlink 3G modems is under consideration. Attracting funds from Ukrainians and from a wider circle of interested parties
+            beyond the Ukrainian borders, will lead our assistance to a new
+            level and will make a much more significant contribution to
+            the important cause set by the Armed Forces of Ukraine and the entire Ukrainian people!
+
+            Thank you for supporting us! Glory to Ukraine. Glory to the Armed forces of Ukraine!
           </p>
         </div>
       </section>
 
       <section class="our-team section">
         <div class="container">
-          <h2 class="section__banner">Засновники</h2>
+          <h2 class="section__banner">Founders</h2>
           <ul class="list team">
             <li class="team-members">
               <img
@@ -132,8 +360,8 @@
               />
 
               <div class="name-profession">
-                <h3 class="name">Олександр Кобилянський</h3>
-                <p class="profession" lang="en">Адвокат</p>
+                <h3 class="name">Oleksandr Kobylyanskyi</h3>
+                <p class="profession" lang="en">Lawyer</p>
               </div>
             </li>
             <li class="team-members">
@@ -144,8 +372,8 @@
               />
 
               <div class="name-profession">
-                <h3 class="name">Павло Лівочка</h3>
-                <p class="profession" lang="en">Адвокат</p>
+                <h3 class="name">Pavlo Livochka</h3>
+                <p class="profession" lang="en">Lawyer</p>
               </div>
             </li>
           </ul>
@@ -153,85 +381,50 @@
       </section>
       <section class="section section__client-block">
         <div class="container">
-          <h2 class="section__banner">Про нас</h2>
-          <p class="target">
-            Ми - українські юристи Кобилянський Олександр та Лівочка Павло. В
-            2019 році ми заснували адвокатське об’єднання і розвивали свій
-            бізнес у м. Києві. Але 24.02.2022 з початком повномасштабної
-            російської агресії наше життя, як і життя всієї країни зазнало
-            шокуючих змін. Руський мір, одурманений ідеєю своєї зверхності,
-            прийшов на нашу землю. З ракетами, пушками і танками. Сіючи повсюди
-            смерть та руйнування, вбиваючи дітей та ґвалтуючи жінок, знищуючи
-            цивільну інфраструктуру, стираючи з лиця землі цілі міста,
-            насаджаючи свої цінності, культуру та мову. Їх лідери взагалі
-            заперечують право українців бути українцями. З підконтрольних їхній
-            владі телеканалів лунають заклики вбивати українських дітей. В ХХІ
-            віці Європа стикнулася з відвертим геноцидом багатомільйонного
-            українського народу. Наші діти у п’ятирічному віці вже ділять життя
-            на до війни та після її початку. Сховатись та втекти від російської
-            орди неможливо. Втихомирювати марно. Вони не зважають на відстань та
-            державні кордони. Прагнення людей жити гідно та вільно не має для
-            них цінності. Єдиний вихід – дати агресору по зубах так, щоб він
-            надовго забув мріяти про свою зверхність та підкорення інших націй
-            та народів. Отже, зараз постало питання існування українського
-            народу як такого. Нашою метою стала участь у відсічі, яку надають
-            агресору Збройні Сили України. Кобилянський Олександр відразу
-            поринув у волонтерську діяльність. Лівочка Павло, маючи бойовий
-            досвід з 2014 року, з першого дня повномасштабного вторгнення
-            24.02.2022, коли ворог був на околицях Києва, не вагаючись, вступив
-            до лав територіальної оборони Києва та разом зі своїми побратимами у
-            складі 204-го окремого батальйону у березні 2022 взяв участь у боях
-            з оборони Києва та звільнення Київської області. Приймав участь у
-            боях за село Мощун, на якому ворог зосередив звої зусилля,
-            прориваючись до української столиці, яку вони мали намір взяти за
-            два дні. Наразі ми вирішили поєднати свої зусилля та створити
-            Благодійний фонд «Сила у єднанні», зусилля якого спрямувати на
-            підтримку 5-го окремого штурмового полку та 204-го окремого
-            батальйону територіальної оборони Збройних Сил України, в яких
-            проходять службу наші побратими, які прямо зараз ведуть тяжкі бої з
-            російським агресором на сході України в Донецькій області. Зазначені
-            підрозділи несуть важкі втрати на цій жорстокій війні. Наша мета -
-            допомогти їм залишитися живими та перемогти. В перспективі ми маємо
-            намір збільшити охват військових частин нашою допомогою. Все
-            залежить від результатів діяльності фонду. Ще до створення фонду,
-            нами та нашими друзями за власні кошти придбано та передано
-            військовим 50 бронежилетів, понад 5000 консервів, безліч матеріалів
-            для обладнання позицій, медичний автомобіль. Зараз вирішується
-            питання про придбання за власні кошти генераторів та 3G модему
-            Starlink. Водночас, залучення коштів ширшого кола небайдужих не лише
-            в Україні, але і за її межами, виведе нашу допомогу на новий рівень
-            та внесе значно вагоміший внесок у надважливішу для людства справу
-            Збройних Сил України та всього українського народу. Дякуємо, що Ви з
-            нами. Слава Україні! Слава Збройним Силам України!
+          <h2 class="section__banner">About Us</h2>
+          <p class="target" translate-key="text-about-us">
+            We are Ukrainian lawyers Oleksandr Kobylyansyi and Pavlo Livochka. In 2019 we founded a Legal Association and developed our business in the Kyiv city. But after the beginning of the full-scale Russian military agression on 24th of February 2022 our life like the lifes of everyone in Ukraine suffered shocking changes.
+
+            Russian world mislead by the idea of their supremacy came to our land. It came with missiles, artilery and tanks. It came bringing death and destruction, killing children and raping women, demolishing civillian infrastructure, erasing entire cities, planting their values, culture and language.
+
+            Their leaders deny the right of Ukrainains to be an independent nation. Controlled by them media are calling to kill Ukrainian children. In the XXIst century Europe faces with an open genocide of millions of the Ukrainian people. At the age of five, our children already clearly tell apart the life before war and after. It is impossible to run away and hide from the Russian hordes.
+
+            It's useless to appease. They do not care about distance and state borders. They do not value the desire of people to live independently and worthily. The only choice that is left is the fight for our freedom. The only solution is to kick them back with such strength that they forget about their dreams of supremacy and subjugation of other nations. 
+
+            At this point the existance of the Ukrainian nation is under question. Our goal is to participate in the resistance leaded by the Ukrainian Armed Forces. 
+
+            From the start Kobylyanskyi Oleksandr took up volunteering activity. Pavlo Livochka without hesitation joined the territorial defences of Kyiv on the first day of the Russian offence. Having military experience from 2014 he participated in battles for the defence of Kyiv and liberation of Kyiv region as part of the 204th separate batallion. He took part in the battles for the village of Moshchun where lots of enemy efforts were concentrated in attempt to break through to the Ukrainian capital.
+
+            Now we decided to combine our efforts and create the charitable foundation "Stronger Together" that focuses on the support of 5th separate assault regiment and 204th separate territorial defense batallion of the Armed Forces of Ukraine in which our brothers are serving, and are currently fighting hard battles aggainst the Russian aggressor in the Donetsk region in eastern Ukraine.
           </p>
         </div>
       </section>
 
       <section class="section-hidden-inventori">
         <div class="container">
-          <h2 class="section__banner">Установчі документи</h2>
+          <h2 class="section__banner">Founding Documents</h2>
           <ul class="list company-characteristics">
             <li class="features">
               <img src="./images/icone/icone.png" alt="doc" />
 
-              <h3 class="features__heading">Статут</h3>
+              <h3 class="features__heading">Statute</h3>
               <a
                 href="./files/statute.pdf"
                 class="features__paragraph"
                 target="_blank"
-                >Відкрити</a
+                >Open</a
               >
             </li>
 
             <li class="features">
               <img src="./images/icone/icone.png" alt="doc" />
 
-              <h3 class="features__heading">Виписка</h3>
+              <h3 class="features__heading">Registry Statement</h3>
               <a
                 href="./files/extract.pdf"
                 class="features__paragraph"
                 target="_blank"
-                >Відкрити</a
+                >Open</a
               >
             </li>
           </ul>
@@ -253,24 +446,29 @@
                   href="https://goo.gl/maps/cFrJsE5g2gY6f92F7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >м. Київ, 01042, вул. Іоанна Павла ІІ, буд. 11, офіс 5</a
+                  translate-key="text-address"
+                  >Kyiv, Ioanna Pavla II street, 11 / 5, 01042 Ukraine</a
                 >
               </li>
               <li class="contacts__find">
                 <a
                   class="find__contacts-footer-link"
                   href="mailto:info@example.com"
+                  translated
                   >cf.stronger.together@gmail.com</a
                 >
               </li>
               <li class="contacts__find">
-                            <a class="find__contacts-footer-link" href="tel:+380950442699">+38 095 044 26 99</a>
-                        </li>
+                <a class="find__contacts-footer-link" href="tel:+380950442699"
+                            translated>
+                  +38 095 044 26 99
+                </a>
+              </li>
             </ul>
           </address>
         </div>
         <div class="social-link-footer">
-          <h3 class="add">ПРИЄДНУЙТЕСЬ</h3>
+          <h3 class="add">FOLLOW US</h3>
           <ul class="footer-social-list list">
             <li>
               <a
@@ -291,10 +489,10 @@
           href="./files/politics.pdf"
           class="politicsAndOfer__politics"
           target="_blank"
-          >Політика конфіденційності</a
+          >Confidentiality Agreement</a
         >
         <a href="./files/ofer.pdf" class="politicsAndOfer__ofer" target="_blank"
-          >Оферта</a
+          >Public Contract</a
         >
       </div>
     </footer>

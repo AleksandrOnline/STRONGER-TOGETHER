@@ -1,0 +1,24 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<clipPath id="rect">
+	<path d="M0,0 v30 h60 v-30 z"/>
+</clipPath>
+<clipPath id="en-t">
+	<path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/>
+</clipPath>
+
+<defs>
+	<symbol id="ua" viewBox="0 0 15 10">
+		<rect x="0" y="0" width="15" height="5" fill="#0057B7" />
+		<rect x="0" y="5" width="15" height="5" fill="#FFDD00" />
+	</symbol>
+	<symbol id="en" viewBox="0 0 45 30">
+		<g clip-path="url(#rect)" transform="translate(-7.5, 0)">
+			<path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+			<path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+			<path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#en-t)" stroke="#C8102E" stroke-width="4"/>
+			<path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+			<path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+		</g>
+	</symbol>
+</defs>
+</svg>

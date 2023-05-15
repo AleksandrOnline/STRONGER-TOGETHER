@@ -1,5 +1,11 @@
+$accent-color: #2196F3;
+$white-color: #FFFFFF;
+$light-accent-color: lighten($accent-color, 40);
+$light-grey-color: #EEEEEE;
+$lighter-grey-color: #f5f4fa;
+
 :root {
-    --accent-color: #2196F3;
+    --accent-color: #{$accent-color};
     --color-for-body: #212121;
     --background-color-dark: #2F303A;
     --primary-font: 'Raleway', sans-serif;

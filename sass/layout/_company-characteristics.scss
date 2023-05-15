@@ -37,7 +37,7 @@
     color: #757575;
 }
 
-@media screen and(max-width:1199px) {
+@media screen and (max-width:1199px) {
     
     .features{
         width: 354px;
@@ -58,13 +58,13 @@
         padding-bottom: 60px;
     }
 }
-@media screen and(min-width:1200px) {
+@media screen and (min-width:1200px) {
     .features__svg {
         width: 270px;
         height: 120px;
     }
 }
-@media screen and(max-width: 767px){ 
+@media screen and (max-width: 767px){ 
     
     .company-characteristics{
         flex-direction: column;
@@ -95,7 +95,7 @@ text-align: center;
     }
 }
 
-@media screen and(max-width:479px) {
+@media screen and (max-width:479px) {
     .features__svg{
         width: 100%;
     }

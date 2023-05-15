@@ -21,31 +21,88 @@
 }
 
 
-.LiqPay {
+.support-container {
+    width: 200px;
+    position: relative;
+}
+
+
+.support-button {
     list-style: none;
     text-decoration: none;
     font-style: normal;
-    width: 180px;
     font-weight: 700;
     font-size: 20px;
     line-height: 1.9;
-    display: flex;
-    align-items: center;
-    text-align: center;
     letter-spacing: 0.06em;
     color: #ffffff;
     background: #0000CD;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     border-radius: 4px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 32px;
-    padding-right: 32px;
-    margin-left: auto;
-    margin-right: auto;
     border: none;
-    &:hover, 
-    &:focus {
-background: #008000;
+    outline: none;
+
+    height: 58px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover, &:focus {
+        /* background: #008000; */
+        background: #385cea;
     }
 }
+
+.support-dropdown {
+    .open & {
+        height: fit-content;
+    }
+
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin-top: 5px;
+
+    border-radius: 4px;
+
+    & > * {
+        width: 100%;
+        height: 50px;
+        background-color: $white-color;
+
+        border: none;
+        outline: none;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        padding: 0 15px;
+        font-size: 16px;
+        color: black;
+        text-decoration: none;
+        font-weight: bold;
+
+        & > img, & > svg {
+            padding-right: 20px;
+            box-sizing: content-box;
+            width: 20px;
+            height: 20px;
+        }
+
+        &.liqpay {
+            background: $light-grey-color;
+        }
+
+        &:hover {
+            background: $light-accent-color;
+        }
+    }
+
+
+}
+

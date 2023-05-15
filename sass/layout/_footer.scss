@@ -169,7 +169,7 @@
 }
 
 
-@media screen and(min-width:768px) {
+@media screen and (min-width:768px) {
     .footer-block{
         flex-wrap: wrap;
         justify-content: space-around;
@@ -196,7 +196,7 @@
     }
 }
 
-@media screen and(min-width:1200px) {
+@media screen and (min-width:1200px) {
     .footer{
         height: 252px;
     }
@@ -215,7 +215,7 @@
         gap: 0;
     }
 }
-@media screen and(max-width:767px) {
+@media screen and (max-width:767px) {
     .footer-block{
         flex-direction: column;
 align-items: center;
@@ -268,7 +268,7 @@ gap: 60px;
     }
 }
 
-@media screen and(max-width:479px) {
+@media screen and (max-width:479px) {
     .modal-form-input-footer{
         width: 100%;
     }

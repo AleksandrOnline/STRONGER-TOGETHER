@@ -31,14 +31,14 @@
     }
 }
 
-@media screen and(max-width:767px) {
+@media screen and (max-width:767px) {
     .client-link{
         width: 210px;
         height: 92px;
     }
     
 }
-@media screen and(max-width:1199px) {
+@media screen and (max-width:1199px) {
     .client-list{
         flex-wrap: wrap;
     }
@@ -52,7 +52,7 @@
     }
 }
 
-@media screen and(min-width:1200px) {
+@media screen and (min-width:1200px) {
     .client-link{
     width: 170px;
     height: 92px;

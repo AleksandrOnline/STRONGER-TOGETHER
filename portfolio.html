@@ -15,7 +15,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/modern-normalize@1.1.0/modern-normalize.min.css"
     />
-    <link rel="stylesheet" href="./css/main.min.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <script src="./js/i18nextify.min.js"></script>
+    <script src="./js/language-change.js"></script>
   </head>
 
   <body>
@@ -30,10 +32,10 @@
           <!-- Navigation -->
           <ul class="list menu">
             <li class="menu__item">
-              <a class="nav" href="./index.html">Головна</a>
+              <a class="nav" href="./index.html">Main Page</a>
             </li>
             <li class="menu__item">
-              <a class="nav portfolio-after" href="./portfolio.html">Звіт</a>
+              <a class="nav portfolio-after" href="./portfolio.html">Report</a>
             </li>
           </ul>
         </nav>
@@ -43,17 +45,26 @@
             <a
               class="container__contacts-header email"
               href="mailto:info@devstudio.com"
+              translated
               ><svg class="container__icone-mail">
                 <use href="./images/svgimages/sprite.svg#mail"></use></svg
               >cf.stronger.together@gmail.com</a
             >
           </li>
           <li class="header-contacts__container">
-                        <a class="container__contacts-header" href="tel:+380961111111"><svg class="container__icone-phone">
-                            <use href="./images/svgimages/sprite.svg#phone"></use>
-                        </svg>+38 095 044 26 99</a>
-                    </li>
+              <a class="container__contacts-header" href="tel:+380961111111"><svg class="container__icone-phone" translated>
+                  <use href="./images/svgimages/sprite.svg#phone"></use>
+              </svg>+38 095 044 26 99</a>
+          </li>
         </ul>
+
+        <div id="language-button-container">
+          <button id="language-button">
+            <svg id="language-button__flag" viewBox="0 0 15 10">
+              <use href="./images/svgimages/flags.svg#en" />
+            </svg>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -62,20 +73,63 @@
     <main>
       <section class="section">
         <div class="container">
-          <h1 class="section__banner">Наші кроки</h1>
+          <h1 class="section__banner">Our Contributions</h1>
 
           <ul class="list presentation">
+
+            <li class="presentation__projects">
+              <div class="overplay-img-project">
+                <img
+                  class="portfolio__img"
+                  src="./images/porfolio/generator-2023-01.jpg"
+                  alt="Repair equipment"
+                />
+              </div>
+              <div class="employees-card-content-wrapper">
+                <h2 class="project">January 2023</h2>
+                <p class="sphere">Electricity generator</p>
+              </div>
+            </li>
+
+            <li class="presentation__projects">
+              <div class="overplay-img-project">
+                <img
+                  class="portfolio__img"
+                  src="./images/porfolio/optics-2022-12.jpg"
+                  alt="Repair equipment"
+                />
+              </div>
+              <div class="employees-card-content-wrapper">
+                <h2 class="project">December 2022</h2>
+                <p class="sphere">Optics</p>
+              </div>
+            </li>
+
+            <li class="presentation__projects">
+              <div class="overplay-img-project">
+                <img
+                  class="portfolio__img"
+                  src="./images/porfolio/repair-equipment.jpg"
+                  alt="Repair equipment"
+                />
+              </div>
+              <div class="employees-card-content-wrapper">
+                <h2 class="project">December 2022</h2>
+                <p class="sphere">Repair equipment for motor vehicles</p>
+              </div>
+            </li>
+
             <li class="presentation__projects">
               <div class="overplay-img-project">
                 <img
                   class="portfolio__img"
                   src="./images/porfolio/avto.jpg"
-                  alt="Технокряк"
+                  alt="Medical vehicle"
                 />
               </div>
               <div class="employees-card-content-wrapper">
-                <h2 class="project">Липень 2022</h2>
-                <p class="sphere">Автомобіль</p>
+                <h2 class="project">July 2022</h2>
+                <p class="sphere">Medical vehicle</p>
               </div>
             </li>
 
@@ -89,8 +143,8 @@
                 />
               </div>
               <div class="employees-card-content-wrapper">
-                <h2 class="project">Травень 2022</h2>
-                <p class="sphere">Бронежелети</p>
+                <h2 class="project">May 2022</h2>
+                <p class="sphere">Bulletproof vests</p>
               </div>
             </li>
 
@@ -104,8 +158,8 @@
                 />
               </div>
               <div class="employees-card-content-wrapper">
-                <h2 class="project">Серпень 2022</h2>
-                <p class="sphere">Продукти харчування</p>
+                <h2 class="project">August 2022</h2>
+                <p class="sphere">Food supply</p>
               </div>
             </li>
 
@@ -118,8 +172,8 @@
                 />
               </div>
               <div class="employees-card-content-wrapper">
-                <h2 class="project">Червень 2022</h2>
-                <p class="sphere">Продукти харчування</p>
+                <h2 class="project">June 2022</h2>
+                <p class="sphere">Food supply</p>
               </div>
             </li>
 
@@ -132,8 +186,8 @@
                 />
               </div>
               <div class="employees-card-content-wrapper">
-                <h2 class="project">Вересень 2022</h2>
-                <p class="sphere">Продукти та речі</p>
+                <h2 class="project">September 2022</h2>
+                <p class="sphere">Food and other items</p>
               </div>
             </li>
 
@@ -146,8 +200,8 @@
                 />
               </div>
               <div class="employees-card-content-wrapper">
-                <h2 class="project">Квітень 2022</h2>
-                <p class="sphere">Бронежелети</p>
+                <h2 class="project">April 2022</h2>
+                <p class="sphere">Bulletproof vests</p>
               </div>
             </li>
           </ul>
@@ -169,24 +223,29 @@
                   href="https://goo.gl/maps/cFrJsE5g2gY6f92F7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >м. Київ, 01042, вул. Іоанна Павла ІІ, буд. 11, офіс 5</a
+                  translate-key="text-address"
+                  >Kyiv, Ioanna Pavla II street, 11 / 5, 01042 Ukraine</a
                 >
               </li>
               <li class="contacts__find">
                 <a
                   class="find__contacts-footer-link"
                   href="mailto:info@example.com"
+                  translated
                   >cf.stronger.together@gmail.com</a
                 >
               </li>
               <li class="contacts__find">
-                            <a class="find__contacts-footer-link" href="tel:+380950442699">+38 095 044 26 99</a>
-                        </li>
+                <a class="find__contacts-footer-link" href="tel:+380950442699"
+                            translated>
+                  +38 095 044 26 99
+                </a>
+              </li>
             </ul>
           </address>
         </div>
         <div class="social-link-footer">
-          <h3 class="add">ПРИЄДНУЙТЕСЬ</h3>
+          <h3 class="add">FOLLOW US</h3>
           <ul class="footer-social-list list">
             <li>
               <a
@@ -200,6 +259,18 @@
             </li>
           </ul>
         </div>
+      </div>
+
+      <div class="politicsAndOfer">
+        <a
+          href="./files/politics.pdf"
+          class="politicsAndOfer__politics"
+          target="_blank"
+          >Confidentiality Agreement</a
+        >
+        <a href="./files/ofer.pdf" class="politicsAndOfer__ofer" target="_blank"
+          >Public Contract</a
+        >
       </div>
     </footer>
   </body>

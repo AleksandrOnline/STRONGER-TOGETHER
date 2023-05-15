@@ -52,7 +52,7 @@
     margin-top: 16px;
 }
 
-@media screen and(max-width:767px) {
+@media screen and (max-width:767px) {
     .team{
         flex-direction: column;
         justify-content: center;
@@ -64,13 +64,13 @@
     }
 
 }
-@media screen and(max-width:1199px) {
+@media screen and (max-width:1199px) {
     .team{
         flex-wrap: wrap;
     }
 }
 
-@media screen and(max-width:479px) {
+@media screen and (max-width:479px) {
     .foto-teams{
         width: 100%;
     }

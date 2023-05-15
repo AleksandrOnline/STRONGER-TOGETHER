@@ -3,7 +3,7 @@
     justify-content: center;
     margin-bottom: 50px;
     gap: 8px;
-    @media screen and(max-width:767px) {
+    @media screen and (max-width:767px) {
         justify-content: start;
 flex-wrap: wrap;
 align-content: flex-start;
@@ -39,7 +39,7 @@ align-content: flex-start;
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    @media screen and(max-width:767px) {
+    @media screen and (max-width:767px) {
         flex-direction: column;
 align-items: center;
     }
@@ -74,7 +74,7 @@ align-items: center;
 .employees-card-content-wrapper {
     border: 1px solid #EEEEEE;
     padding: 20px 24px;
-    @media screen and(max-width:1199px) {
+    @media screen and (max-width:1199px) {
         padding-right: 11px;
     }
 
@@ -109,7 +109,7 @@ align-items: center;
     overflow: hidden;
 }
 
-@media screen and(max-width:479px) {
+@media screen and (max-width:479px) {
     .pictures{
         width: 100%;
     }

@@ -1,0 +1,68 @@
+#language-button-container {
+	margin: 0 20px;
+	width: 30px;
+	height: 20px;
+	position: relative;
+}
+
+#language-button {
+	outline: none;
+	background: none;
+	border: none;
+	overflow: hidden;
+	padding: 0;
+	line-height: 0;
+}
+
+#language-button__flag {
+	height: 20px;	
+}
+
+#language-choice__container {
+	position: absolute; 
+	right: 170px;
+	top: 30px;
+	z-index: 100;
+	position: relative;
+}
+
+#language-choice {
+	width: 200px; 
+	background-color: white;
+}
+
+.language-choice__button {
+	border: none;
+	outline: none;
+	border: none;
+	background-color: #FFFFFF;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	transition: background-color
+	var(--transition-duration-and-func);
+	&.selected {
+		background-color: $light-accent-color;
+	}
+	&:hover {
+		background-color: $light-grey-color;
+	}
+}
+
+.language-choice__flag {
+	height: 20px;
+	width: 30px;
+	margin-left: 10px;
+}
+
+.language-choice__name {
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 1.14;
+	letter-spacing: .02em;
+	font-family: var(--secondary-font);
+	color: var(--color-for-body);
+	transition: color var(--transition-duration-and-func);
+	padding-left: 20px;
+}
